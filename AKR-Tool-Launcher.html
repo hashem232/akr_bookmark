@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AKR Tool Launcher</title>
+  <script>
+    (function() {
+      const promptKey = prompt("🔐 Enter your subscription key:");
+      if (!promptKey) return alert("❌ No key entered.");
+
+      fetch("https://script.google.com/macros/s/AKfycbzuecy-zL9l1M7rx3zgqhZnA2wGX6hwHwmxNif6f5WftrBI814dFk2McGuH-blvZ_4/exec")
+        .then(res => res.text())
+        .then(text => {
+          const validKeys = text.split("\n").map(k => k.trim());
+          if (!validKeys.includes(promptKey)) return alert("❌ Invalid or expired key.");
+
+          const s = document.createElement("script");
+          s.src = "https://hashem232.github.io/akr_bookmark/your-obfuscated-bookmark-updated.js";
+          document.body.appendChild(s);
+        })
+        .catch(() => alert("❌ Error checking key."));
+    })();
+  </script>
+</head>
+<body></body>
+</html>
